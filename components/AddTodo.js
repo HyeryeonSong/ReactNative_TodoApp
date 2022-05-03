@@ -6,17 +6,30 @@ import {
   TextInput,
   TouchableOpacity,
   Keyboard,
+  Alert,
 } from 'react-native';
 
 function AddTodo({onInsert}) {
   const [text, setText] = useState('');
+
 
   const onPress = () => {
     var space = /\s/g; // 공백체크
     inputText = text.replace(space, ""); // 입력값에서 공백 제거
 
     if(text == "" || inputText.length < 1){
-      alert('할일을 입력하세요.')
+      // alert('할 일을 입력하세요.')
+      Alert.alert(
+        '내용을 입력하지 않았습니다.',  
+        '', 
+        [
+          {text: '확인', onPress: () => {}, style: 'default'},          
+        ],
+        {
+          cancelable: true,
+          onDismiss: () => {},
+        },
+      );
     } else{
       onInsert(text);
       setText('');
@@ -27,7 +40,7 @@ function AddTodo({onInsert}) {
   return (
     <View style={styles.block}>
       <TextInput
-        placeholder="할일을 입력하세요."
+        placeholder="할 일을 입력하세요."
         style={styles.input}
         value={text}
         onChangeText={setText}

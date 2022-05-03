@@ -35,7 +35,10 @@ function TodoItem({id, text, done, onToggle, onRemove}) {
           )}
         </View>
       </TouchableOpacity>
-      <Text style={[styles.text, done && styles.lineThrough]}>{text}</Text>
+      <Text 
+        style={[styles.text, done && styles.lineThrough]}  
+        onPress={() => onToggle(id)}
+      >{text}</Text>
       {done ? (
         <TouchableOpacity onPress={remove}>
           <Icon name="delete" size={20} color="#ddd" />
